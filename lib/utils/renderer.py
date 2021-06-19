@@ -124,26 +124,26 @@ class Renderer:
             baseColorFactor=(color[0], color[1], color[2], 1.0)
         )
 
-        # id_mesh=pymesh.load_mesh('./demo_data/18_0.obj')
-        # pose_mesh=pymesh.form_mesh(mesh.vertices, mesh.faces)
+        id_mesh=pymesh.load_mesh('./demo_data/18_0.obj')
+        pose_mesh=pymesh.form_mesh(mesh.vertices, mesh.faces)
 
-        # with torch.no_grad():
-        #     id_mesh_points=id_mesh.vertices[random_sample]
-        #     id_mesh_points=id_mesh_points - (id_mesh.bbox[0] + id_mesh.bbox[1]) / 2
-        #     id_mesh_points = torch.from_numpy(id_mesh_points.astype(np.float32)).cuda()
+        with torch.no_grad():
+            id_mesh_points=id_mesh.vertices[random_sample]
+            id_mesh_points=id_mesh_points - (id_mesh.bbox[0] + id_mesh.bbox[1]) / 2
+            id_mesh_points = torch.from_numpy(id_mesh_points.astype(np.float32)).cuda()
 
-        #     pose_mesh_points=pose_mesh.vertices#[random_sample2]
-        #     pose_mesh_points=pose_mesh_points-(pose_mesh.bbox[0] + pose_mesh.bbox[1]) / 2
-        #     pose_mesh_points = torch.from_numpy(pose_mesh_points.astype(np.float32)).cuda()
+            pose_mesh_points=pose_mesh.vertices#[random_sample2]
+            pose_mesh_points=pose_mesh_points-(pose_mesh.bbox[0] + pose_mesh.bbox[1]) / 2
+            pose_mesh_points = torch.from_numpy(pose_mesh_points.astype(np.float32)).cuda()
 
 
-        #     pointsReconstructed = net_G(pose_mesh_points.transpose(0,1).unsqueeze(0),id_mesh_points.transpose(0,1).unsqueeze(0))  # forward pass
+            pointsReconstructed = net_G(pose_mesh_points.transpose(0,1).unsqueeze(0),id_mesh_points.transpose(0,1).unsqueeze(0))  # forward pass
 
-        # new_face=face_reverse(id_mesh.faces)
+        new_face=face_reverse(id_mesh.faces)
 
-        # tmesh = trimesh.Trimesh(pointsReconstructed.cpu().numpy().squeeze(), faces=new_face, process=False)
+        tmesh = trimesh.Trimesh(pointsReconstructed.cpu().numpy().squeeze(), faces=new_face, process=False)
 
-        mesh =  pyrender.Mesh.from_trimesh(mesh)
+        mesh =  pyrender.Mesh.from_trimesh(tmesh)
 
         mesh_node = self.scene.add(mesh, 'mesh')
 
