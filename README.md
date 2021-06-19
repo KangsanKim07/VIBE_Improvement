@@ -53,7 +53,7 @@ We tried transformer encoder to use attention mechanism in the generator. Model 
 
 |    | MPJPE | PA-MPJPE | PVE | ACCEL_ERR |
 |:---:|:---:|:---:|:---:|:---:|
-|VIBE|**126.69**| **83.41 **| **148.75** | **23.26** |
+|VIBE|**126.69**| **83.41**| **148.75** | **23.26** |
 |Ours|127.87| 90.33 | 163.89 | 31.79 |
 
 
